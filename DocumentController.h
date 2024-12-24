@@ -7,12 +7,14 @@
 
 class DocumentController {
 public:
+
     // Создание нового документа
     void createDocument() {
         std::cout << "Введите имя нового документа: ";
         std::string name;
         std::cin >> name;
         document = std::make_shared<Document>(name);
+        currentFilename = name + ".txt";
         std::cout << "Создан документ " << document->getName() << std::endl;
     }
 
@@ -75,8 +77,26 @@ public:
         return document != nullptr; // Проверка на существование документа
     }
 
+    void saveDocument(const std::string& filename) {
+        if (document) {
+            document->saveToFile(filename);
+        } else {
+            std::cout << "Документ не создан." << std::endl;
+        }
+    }
+
+    // Set filename for saving
+    void setCurrentFilename(const std::string& filename) {
+        currentFilename = filename;
+    }
+
+    std::string getCurrentFilename() const {
+        return currentFilename;
+    }
+
 private:
     std::shared_ptr<Document> document; // Указатель на текущий документ
+    std::string currentFilename;
 };
 
 #endif // DOCUMENTCONTROLLER_H

@@ -18,7 +18,6 @@ public:
 
     static std::shared_ptr<Primitive> deserialize(const std::string& data);
 
-    // Getter methods for name and type
     std::string getName() const { return name; }
     std::string getType() const { return type; }
 

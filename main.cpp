@@ -10,7 +10,8 @@ void printMenu() {
     std::cout << "3. Экспортировать документ в файл\n";
     std::cout << "4. Создать графический примитив\n";
     std::cout << "5. Удалить графический примитив\n";
-    std::cout << "6. Выход\n";
+    std::cout << "6. Сохранить изменения в документе\n";
+    std::cout << "7. Выход\n";
 }
 
 int main() {
@@ -70,7 +71,16 @@ int main() {
                 break; 
             }
 
-           case 6: // Выход
+             case 6: { // Сохранить изменения в документе
+                if (controller.documentExists()) {
+                    controller.saveDocument(controller.getCurrentFilename());
+                } else {
+                    std::cout << "Документ не создан.\n";
+                }
+                break; 
+            }
+
+           case 7: // Выход
                return 0;
 
            default:
